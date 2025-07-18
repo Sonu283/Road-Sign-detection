@@ -1,0 +1,58 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Logs and outputs
+*.log
+*.out
+*.err
+
+# Model files (YOLO, others)
+*.pth
+*.onnx
+weights/
+runs/
+checkpoints/
+
+# Dataset folders (if large)
+images/
+annotations/
+gtsrb_dataset/
+dataset/
+dataset1/
+datasets/
+Datasets/
+3asd/
+*.h5
+*.zip
+*.tar.gz
+
+# Pascal VOC annotation files
+*.xml
+
+# Config and environment
+.env
+*.yaml
+*.yml
+
+# Temporary or OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Presentations, if you don’t want to track
+*.ppt
+*.pptx

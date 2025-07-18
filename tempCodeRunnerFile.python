@@ -1,0 +1,74 @@
+# Fertilizer Recommendation System - Optimized Code with AdaBoost
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.metrics import accuracy_score
+
+# Load Dataset
+df = pd.read_csv(r"C:\Users\satwi\Downloads\data_core.csv")  # Change path if needed
+
+# Preprocessing
+categorical_columns = ["Soil Type", "Crop Type"]
+le_features = LabelEncoder()
+for col in categorical_columns:
+    df[col] = le_features.fit_transform(df[col])
+
+# Encode target separately
+le_target = LabelEncoder()
+df['Fertilizer Name'] = le_target.fit_transform(df['Fertilizer Name'])
+
+X = df.drop(columns=["Fertilizer Name"])
+y = df["Fertilizer Name"]
+
+# Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Feature Scaling
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Model Training with AdaBoost
+model = AdaBoostClassifier(random_state=42)
+model.fit(X_train, y_train)
+
+# Model Evaluation
+y_pred = model.predict(X_test)
+print(f"Model Accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}%")
+
+# -------------------------
+# Real-Time User Input
+# -------------------------
+def predict_fertilizer():
+    print("\nEnter the following details to predict the Fertilizer:")
+
+    nitrogen = float(input("Nitrogen content (N): "))
+    phosphorus = float(input("Phosphorus content (P): "))
+    potassium = float(input("Potassium content (K): "))
+    temperature = float(input("Temperature (°C): "))
+    humidity = float(input("Humidity (%): "))
+    moisture = float(input("Moisture (%): "))
+    soil_type = input("Soil Type (encoded 0-9): ")
+    crop_type = input("Crop Type (encoded 0-9): ")
+
+    input_data = pd.DataFrame({
+        'N': [nitrogen],
+        'P': [phosphorus],
+        'K': [potassium],
+        'temperature': [temperature],
+        'humidity': [humidity],
+        'moisture': [moisture],
+        'Soil Type': [int(soil_type)],
+        'Crop Type': [int(crop_type)]
+    })
+
+    input_data_scaled = scaler.transform(input_data)
+    prediction_encoded = model.predict(input_data_scaled)[0]
+    prediction = le_target.inverse_transform([prediction_encoded])[0]
+
+    print(f"\n✅ Recommended Fertilizer: {prediction}")
+
+# Call the function
+predict_fertilizer()
