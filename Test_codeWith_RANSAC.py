@@ -4,7 +4,7 @@ import numpy as np
 from collections import deque
 
 # Load model
-model = YOLO(r"C:\Users\satwi\Downloads\Road Sign detection\runs\detect\train4\weights\best.pt")
+model = YOLO("runs\detect\train4\weights\best.pt")
 class_names = [str(i) for i in range(43)]
 
 # Initialize camera

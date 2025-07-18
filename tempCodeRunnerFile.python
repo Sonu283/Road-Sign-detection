@@ -7,7 +7,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.metrics import accuracy_score
 
 # Load Dataset
-df = pd.read_csv(r"C:\Users\satwi\Downloads\data_core.csv")  # Change path if needed
+df = pd.read_csv("\data_core.csv")  # Change path if needed
 
 # Preprocessing
 categorical_columns = ["Soil Type", "Crop Type"]

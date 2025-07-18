@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # Load trained model
-model = YOLO(r"C:\Users\satwi\Downloads\Road Sign detection\runs\detect\train4\weights\best.pt")
+model = YOLO("runs\detect\train4\weights\best.pt")
 
 # Define GTSRB class names (can be replaced with actual names)
 class_names = [str(i) for i in range(43)]

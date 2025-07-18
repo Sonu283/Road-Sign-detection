@@ -44,7 +44,7 @@ def predict_traffic_sign(image_path):
 # Testing the function
 if __name__ == "__main__":
     # Specify the path to your test image here
-    image_path = r"C:\Users\satwi\Downloads\Road Sign detection\5.jpg"
+    image_path = "Road Sign detection\5.jpg"
 
     # Run prediction
     result = predict_traffic_sign(image_path)
